@@ -1,0 +1,19 @@
+{
+    "description": "bind mount from another operating system",
+    "documentation": "https://github.com/moby/transbind",
+    "interface": {
+        "types": ["docker.mountpoint/1.0"],
+        "socket": "transbind.sock"
+    },
+    "entrypoint": ["/docker-mountpoint-transbind", "/host", "vsock:2:1523"],
+    "mounts": [
+        {
+            "name": "host",
+            "description": "The host file system for path overlay checking",
+            "source": "/",
+            "destination": "/host",
+            "type": "none",
+            "options": ["rbind"]
+        }
+    ]
+}
